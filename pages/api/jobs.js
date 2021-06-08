@@ -29,7 +29,5 @@ export default async (req, res) => {
   const { jobs } = data;
   if (jobs.length > 10) jobs.length = 10;
 
-  res
-    .status(200)
-    .json({ message: "Get jobs successfully", data: { ...data, jobs } });
+  res.status(200).json(data);
 };

@@ -7,18 +7,20 @@ import Search from "../../../components/Search";
 import { server } from "../../../config";
 
 function Jobs({ data }) {
-  const [jobs, setJobs] = useState(data?.data.jobs);
+  const [jobs, setJobs] = useState(data?.jobs || []);
   const [jobTitle, setJobTitle] = useState("");
   const [lastestFilter, setLastestFilter] = useState(false);
 
   useEffect(async () => {
-    const response = await fetch(
-      `${server}/api/jobs?q=${jobTitle}${
-        lastestFilter ? "&lastestFilter=true" : ""
-      }`
-    );
-    const data = await response.json();
-    setJobs(data?.data.jobs);
+    try {
+      const response = await fetch(
+        `${server}/api/jobs?q=${jobTitle}${
+          lastestFilter ? "&lastestFilter=true" : ""
+        }`
+      );
+      const data = await response.json();
+      setJobs(data?.jobs || []);
+    } catch (e) {}
   }, [jobTitle, lastestFilter]);
 
   return (
@@ -29,20 +31,33 @@ function Jobs({ data }) {
         lastestFilter={lastestFilter}
         onChangeLastestFilter={setLastestFilter}
       />
-      <JobList jobs={jobs} jobTitle={jobTitle} />
+      <JobList
+        jobs={jobs}
+        jobTitle={jobTitle}
+        lastestFilter={lastestFilter}
+        onChangeLastestFilter={setLastestFilter}
+      />
       <Footer />
     </div>
   );
 }
 
 export async function getStaticProps(context) {
-  const response = await fetch(`${server}/api/jobs`);
-  const data = await response.json();
-  return {
-    props: {
-      data,
-    },
-  };
+  try {
+    const response = await fetch(`${server}/api/jobs`);
+    const data = await response.json();
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (e) {
+    return {
+      props: {
+        data: {},
+      },
+    };
+  }
 }
 
 export default Jobs;

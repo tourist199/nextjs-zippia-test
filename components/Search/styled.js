@@ -52,6 +52,7 @@ export const ResultItem = styled.div`
 export const SwitchNewJobs = styled.div`
   display: flex;
   margin-left: 15px;
+  height: 40px;
 `;
 
 export const SwitchItem = styled.button`
@@ -76,7 +77,7 @@ export const SwitchItem = styled.button`
   ${({ $active }) =>
     $active &&
     css`
-      background-color: #44bd32;
+      background-color: ${({ theme }) => theme.colors.green};
       color: ${({ theme }) => theme.colors.white};
     `}
 `;

@@ -1,10 +1,13 @@
 import { useRef, useState, useCallback } from "react";
 
 import useOnClickOutside from "../../hooks/useOnClickOutside";
+import _debounce from "lodash/debounce";
 import * as S from "./styled";
 import { server } from "../../config";
 import Result from "./Result";
 import SwitchNewJobs from "./SwitchNewJobs";
+
+const TIME_DELAY = 100;
 
 function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
   const [searchKey, setSearchKey] = useState("");
@@ -19,6 +22,12 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
     const value = e.target.value;
     setSearchKey(value);
     if (value) {
+      handleGetJob(value);
+    }
+  });
+
+  const handleGetJob = useCallback(
+    _debounce(async (value) => {
       const response = await fetch(
         `${server}/api/search-job?q=${value}${
           lastestFilter ? "&lastestFilter=true" : ""
@@ -27,8 +36,9 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
       const data = await response.json();
       setResults(data);
       setShow(true);
-    }
-  });
+    }, TIME_DELAY),
+    []
+  );
 
   const handleShowResult = useCallback(() => {
     setShow(true);

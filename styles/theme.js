@@ -5,6 +5,7 @@ const colors = {
   white: "#fff",
   hover: "#f8f9fa",
   border: "#d8dee2",
+  green: "#44bd32",
 };
 
 const fontSize = {

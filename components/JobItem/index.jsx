@@ -18,7 +18,7 @@ function JobItem({ job }) {
         <S.Detail>
           <hr />
           <S.Skill>
-            Skills: {_truncate(job.skillsets.join(", "), { length: 60 })}
+            Skills: {_truncate(job.skillsets.join(", "), { length: 50 })}
           </S.Skill>
           <hr />
           <div className="d-flex justify-content-between">

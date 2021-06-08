@@ -1,14 +1,21 @@
 import { memo } from "react";
 
 import JobItem from "../JobItem";
+import SwitchNewJobs from "../Search/SwitchNewJobs";
 import * as S from "./styled";
 
-function JobList({ jobs, jobTitle }) {
+function JobList({ jobs, jobTitle, lastestFilter, onChangeLastestFilter }) {
   return (
     <div className="container pt-5 pb-5">
-      <div className="d-flex pb-5">
-        <S.Title>{jobTitle || "Developer"}</S.Title>
-        <S.SubTitle>Jobs</S.SubTitle>
+      <div className="d-flex justify-content-between">
+        <div className="d-flex pb-5">
+          <S.Title>{jobTitle || "Developer"}</S.Title>
+          <S.SubTitle>Jobs</S.SubTitle>
+        </div>
+        <SwitchNewJobs
+          lastestFilter={lastestFilter}
+          onChangeLastestFilter={onChangeLastestFilter}
+        />
       </div>
 
       <div className="row">
