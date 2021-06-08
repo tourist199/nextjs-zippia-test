@@ -7,15 +7,17 @@ import * as S from "./styled";
 function JobList({ jobs, jobTitle, lastestFilter, onChangeLastestFilter }) {
   return (
     <div className="container pt-5 pb-5">
-      <div className="d-flex justify-content-between">
-        <div className="d-flex pb-5">
+      <div className="d-md-flex justify-content-between">
+        <div className="d-flex pb-2">
           <S.Title>{jobTitle || "Developer"}</S.Title>
           <S.SubTitle>Jobs</S.SubTitle>
         </div>
-        <SwitchNewJobs
-          lastestFilter={lastestFilter}
-          onChangeLastestFilter={onChangeLastestFilter}
-        />
+        <div className="pb-5 d-flex justify-content-end">
+          <SwitchNewJobs
+            lastestFilter={lastestFilter}
+            onChangeLastestFilter={onChangeLastestFilter}
+          />
+        </div>
       </div>
 
       <div className="row">

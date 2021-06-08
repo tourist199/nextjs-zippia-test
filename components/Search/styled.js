@@ -52,16 +52,35 @@ export const ResultItem = styled.div`
 export const SwitchNewJobs = styled.div`
   display: flex;
   margin-left: 15px;
-  height: 40px;
+
+  ${({ $isTop }) =>
+    $isTop &&
+    css`
+      ${media.tablet`
+        display: none;
+      `}
+    `}
+
+  ${({ $isTop }) =>
+    !$isTop &&
+    css`
+      height: 35px;
+      display: none;
+
+      ${media.tablet`
+        display: flex;
+      `}
+    `}
 `;
 
 export const SwitchItem = styled.button`
   border: 1px solid ${({ theme }) => theme.colors.border};
   width: 150px;
   background-color: none;
+  white-space: nowrap;
 
   ${media.tablet`
-    width: 120px;
+    width: 110px;
   `}
 
   &:first-child {

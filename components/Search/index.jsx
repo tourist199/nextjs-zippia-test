@@ -73,6 +73,7 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
           <SwitchNewJobs
             lastestFilter={lastestFilter}
             onChangeLastestFilter={onChangeLastestFilter}
+            isTop
           />
         </div>
       </div>

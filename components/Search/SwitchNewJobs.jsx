@@ -1,8 +1,8 @@
 import * as S from "./styled";
 
-function SwitchNewJobs({ lastestFilter, onChangeLastestFilter }) {
+function SwitchNewJobs({ lastestFilter, onChangeLastestFilter, isTop }) {
   return (
-    <S.SwitchNewJobs>
+    <S.SwitchNewJobs $isTop={isTop}>
       <S.SwitchItem
         onClick={() => onChangeLastestFilter(false)}
         $active={!lastestFilter}>
