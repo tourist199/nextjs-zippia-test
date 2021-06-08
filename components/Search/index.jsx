@@ -13,6 +13,7 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
   const [searchKey, setSearchKey] = useState("");
   const [results, setResults] = useState([]);
   const [isShow, setShow] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const refInput = useRef();
   const refResult = useRef();
 
@@ -21,6 +22,7 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
   const handleChangeText = useCallback(async (e) => {
     const value = e.target.value;
     setSearchKey(value);
+    setIsFetching(true);
     if (value) {
       handleGetJob(value);
     }
@@ -36,6 +38,7 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
       const data = await response.json();
       setResults(data);
       setShow(true);
+      setIsFetching(false);
     }, TIME_DELAY),
     []
   );
@@ -60,6 +63,15 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
               ref={refInput}
               placeholder="Job Title (Business Analyst, Frontend ....)"
             />
+            <S.SearchIcon>
+              <i class="fa fa-search"></i>
+            </S.SearchIcon>
+            {isFetching && searchKey && (
+              <S.IconLoading>
+                <i class="fa fa-spinner fa-spin"></i>
+              </S.IconLoading>
+            )}
+
             {isShow && results && (
               <Result
                 ref={refResult}
@@ -67,6 +79,7 @@ function Search({ onChangeTitle, lastestFilter, onChangeLastestFilter }) {
                 onCloseResult={handleHiddenResult}
                 results={results}
                 searchKey={searchKey}
+                isFetching={isFetching}
               />
             )}
           </S.Search>

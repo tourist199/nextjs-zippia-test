@@ -2,10 +2,13 @@ import React, { forwardRef } from "react";
 
 import * as S from "./styled";
 
-function Result({ results, searchKey, onChangeTitle, onCloseResult }, ref) {
+function Result(
+  { results, searchKey, onChangeTitle, onCloseResult, isFetching },
+  ref
+) {
   return (
     <S.ResultWrapper ref={ref}>
-      {results?.length === 0 && searchKey && (
+      {results?.length === 0 && searchKey && !isFetching && (
         <S.TextRed>
           Sorry, we can't find that job title. Please try another.
         </S.TextRed>

@@ -5,7 +5,7 @@ export const SearchWrapper = styled.div`
   background: ${({ theme }) => theme.colors.grayDark};
   padding: 30px 0;
   position: sticky;
-  top: 0;
+  top: -1px;
   left: 0;
   z-index: ${({ theme }) => theme.zIndex.base};
 `;
@@ -26,6 +26,18 @@ export const Search = styled.div`
   width: 100%;
 `;
 
+export const IconLoading = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+`;
+
+export const SearchIcon = styled.div`
+  position: absolute;
+  left: 11px;
+  top: 9px;
+`;
+
 export const TextRed = styled.p`
   color: red;
   padding: 0 20px;
@@ -34,14 +46,14 @@ export const TextRed = styled.p`
 export const InputSearch = styled.input`
   height: 40px;
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px 20px 10px 40px;
 `;
 
 export const ResultItem = styled.div`
   height: 40px;
   display: flex;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 40px;
   cursor: pointer;
 
   &:hover {
@@ -64,7 +76,7 @@ export const SwitchNewJobs = styled.div`
   ${({ $isTop }) =>
     !$isTop &&
     css`
-      height: 35px;
+      height: 30px;
       display: none;
 
       ${media.tablet`
@@ -80,7 +92,8 @@ export const SwitchItem = styled.button`
   white-space: nowrap;
 
   ${media.tablet`
-    width: 110px;
+    width: 100px;
+    font-size: ${({ theme }) => theme.fontSize.sm};
   `}
 
   &:first-child {

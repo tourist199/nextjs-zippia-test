@@ -29,9 +29,8 @@ export default class MyApp extends App {
 
           {/* Font  */}
           <link
-            href="http://fonts.cdnfonts.com/css/brandon-grotesque-regular"
             rel="stylesheet"
-          />
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
           <link
             href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Roboto:300,400,500,700|Rubik:400,500,600,700|Lato:400,500,600,700|Poppins:400,500,600,700&amp;display=swap"
             rel="stylesheet"></link>
